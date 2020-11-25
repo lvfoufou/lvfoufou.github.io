@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cookie</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+</head>
+
+<body>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #wrapper {
+      margin: 0 auto;
+      max-width: 300px;
+    }
+  </style>
+  <div id="wrapper">
+
+    <p>
+      存的,账号<span class="zhi">之前的值</span>
+      存的,密码<span class="mima">之前的值</span>
+    </p>
+  </div>
+  <script type="text/javascript">
+    $(function ()
+    {
+
+      function getCookie(cookieName)
+      {
+        var cookieStr = unescape(document.cookie);
+        var arr = cookieStr.split("; ");
+        var cookieValue = "";
+        for (var i = 0; i < arr.length; i++) {
+          var temp = arr[i].split("=");
+          if (temp[0] == cookieName) {
+            cookieValue = temp[1];
+            break;
+          }
+        }
+        return cookieValue;
+      }
+      $('.zhi').html(getCookie('name'))
+      $('.mima').html(getCookie('passw'))
+    })
+  </script>
+</body>
+
+</html>
