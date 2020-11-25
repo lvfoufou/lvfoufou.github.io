@@ -17,11 +17,11 @@
 
     #wrapper {
       margin: 0 auto;
-      max-width: 1000px;
+      max-width: 1500px;
     }
 
     p {
-      font-size: 14px;
+      font-size: 13px;
     }
   </style>
   <div id="wrapper">
@@ -88,28 +88,22 @@
       ·
       如果web服务器端使用的是session，那么所有的数据都保存在服务器上，客户端每次请求服务器的时候会发送当前会话的sessionid，服务器根据当前sessionid判断相应的用户数据标志，以确定用户是否登录或具有某种权限。由于数据是存储在服务器上面，所以你不能伪造，但是如果你能够获取某个登录用户的
       sessionid，用特殊的浏览器伪造该用户的请求也是能够成功的。sessionid是服务器和客户端链接时候随机分配的，一般来说是不会有重复，但如果有大量的并发请求，也不是没有重复的可能性.
-
-      <br>
-
-      ·
+      <br> ·
       <br>
       如果浏览器使用的是cookie，那么所有的数据都保存在浏览器端，比如你登录以后，服务器设置了cookie用户名，那么当你再次请求服务器的时候，浏览器会将用户名一块发送给服务器，这些变量有一定的特殊标记。服务器会解释为cookie变量，所以只要不关闭浏览器，那么cookie变量一直是有效的，所以能够保证长时间不掉线。如果你能够截获某个用户的
       cookie变量，然后伪造一个数据包发送过去，那么服务器还是认为你是合法的。所以，使用 cookie被攻击的可能性比较大。如果设置了的有效时间，那么它会将
       cookie保存在客户端的硬盘上，下次再访问该网站的时候，浏览器先检查有没有 cookie，如果有的话，就读取该 cookie，然后发送给服务器。如果你在机器上面保存了某个论坛
       cookie，有效期是一年，如果有人入侵你的机器，将你的 cookie拷走，然后放在他的浏览器的目录下面，那么他登录该网站的时候就是用你的的身份登录的。所以 cookie是可以伪造的。当然，伪造的时候需要主意，直接copy
       cookie文件到 cookie目录，浏览器是不认的，他有一个index.dat文件，存储了 cookie文件的建立时间，以及是否有修改，所以你必须先要有该网站的 cookie文件，并且要从保证时间上骗过浏览器
-
-
-
       <br>5.两个都可以用来存私密的东西，同样也都有有效期的说法,区别在于session是放在服务器上的，过期与否取决于服务期的设定，cookie是存在客户端的，过去与否可以在cookie生成的时候设置进去。
-
       (1)cookie数据存放在客户的浏览器上，session数据放在服务器上<br>
       (2)cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗,如果主要考虑到安全应当使用session<br>
       (3)session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，如果主要考虑到减轻服务器性能方面，应当使用COOKIE<br>
       (4)单个cookie在客户端的限制是3K，就是说一个站点在客户端存放的COOKIE不能3K。<br>
       (5)所以：将登陆信息等重要信息存放为SESSION;其他信息如果需要保留，可以放在COOKIE中
     </p>
-    <br><br>
+    <br> <span style="color: #f00;">第三个</span>
+
     <input type="text" class="name">
     <input type="password" class="passw">
     <button class="login">登录</button>
@@ -120,7 +114,7 @@
       function setCookie(cookieName, cookieValue, cookieDates)
       {
         let day = new Date();
-        day.setDate(day.getDate() + cookieDates);
+        day.setMinutes(day.getMinutes() + cookieDates);
         document.cookie = cookieName + "=" + cookieValue + ";expires=" + day.toGMTString();
       }
       $('.login').on('click', function ()

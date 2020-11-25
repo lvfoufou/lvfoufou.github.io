@@ -26,11 +26,12 @@
       存的,账号<span class="zhi">之前的值</span>
       存的,密码<span class="mima">之前的值</span>
     </p>
+    <button class="del">删除</button>
   </div>
   <script type="text/javascript">
     $(function ()
     {
-
+      //获取cookie
       function getCookie(cookieName)
       {
         var cookieStr = unescape(document.cookie);
@@ -47,6 +48,17 @@
       }
       $('.zhi').html(getCookie('name'))
       $('.mima').html(getCookie('passw'))
+      // 删除cookie
+      function removeCookie(cookieName)
+      {
+        document.cookie = encodeURIComponent(cookieName) + "=; expires=" + new Date();
+      }
+      $('.del').on('click', function ()
+      {
+        removeCookie('name')
+        removeCookie('passw')
+        window.location.href = 'index.html'
+      })
     })
   </script>
 </body>
