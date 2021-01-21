@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>利用sort()</title>
+</head>
+
+<body>
+  <script>
+    function unique(arr) {
+      if (!Array.isArray(arr)) {
+        console.log("type error");
+        return;
+      }
+      arr = arr.sort();
+      var array = [arr[0]];
+      for (var i = 1; i < arr.length; i++) {
+        if (arr[i] !== arr[i - 1]) {
+          array.push(arr[i]);
+        }
+      }
+      return array;
+    }
+    var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+    // [0, 1, 15, "NaN", NaN, NaN, {…}, {…}, "a", false, null, true, "true", undefined]  //NaN、{}没有去重
+    console.log(unique(arr))
+  </script>
+</body>
+
+</html>
