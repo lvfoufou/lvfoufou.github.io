@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>canvas</title>
+</head>
+
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+    </style>
+    <div class="container">
+        <!-- <canvas id="canvas"></canvas> -->
+    </div>
+    <script>
+        /** @type {HTMLCanvasElement} */
+        /* 创建canvas标签在container里面 */
+        const x = document.createElement('canvas')
+        const container = document.getElementsByTagName('div')
+        // console.log(document.getElementsByTagName('div'));
+        document.body.appendChild(x);
+        container[0].appendChild(x)
+        /* 创建end */
+        /* canvas基本配置 */
+        const canvas = document.getElementsByTagName('canvas')
+        const context = x.getContext('2d')
+        x.width = 800;
+        x.height = 800;
+        function PI(deg) {
+            // console.log(deg / 180 * Math.PI);
+            return deg / 180 * Math.PI;
+        }
+        /* 基本配置end */
+        // context.beginPath() //画布开始
+        // context.arc(400, 250, 200 , PI(45), PI(135), true) //画蓝色的圆 true = 逆时针
+        // context.ellipse(400,250,200,200,0,0,PI(360));
+        // context.moveTo(200, 200);
+        // context.quadraticCurveTo(355, 213, 401, 357);
+        // context.stroke();
+        // context.arc(400, 250, 100, PI(-90), PI(0), false);
+        // context.lineWidth = 10;
+        // context.strokeStyle = 'black';
+        // context.stroke();
+        // context.fillStyle = '#4191d8'
+        // context.fill()
+        // context.closePath()
+        /* 蓝色头end */
+
+        // context.beginPath()
+        //  context.moveTo(200, 200);
+        // context.quadraticCurveTo(355, 213, 401, 357);
+        // context.stroke();
+        // context.arc(400, 300, 280, PI(45), PI(135), true);
+        // context.lineWidth = 3;
+        // context.strokeStyle = 'black';
+        // context.stroke();
+        // context.closePath()
+        // 针对椭圆（蓝胖子的头是个椭圆）
+        // function EllipseOne(context,x,y,a,b){ //x=x坐标 y=y坐标 a=长轴 b=短轴
+        //     var step = (a>b)?1/a:1/b;
+        //     context.beginPath();
+        //     context.moveTo(x+a,y)
+        //     for(var i=0;i>2*Math.PI;i+=step){
+        //         context.lineTo(x+a*Math.cos(i),y+b*Math.sin(i));
+        //     }
+        //     context.closePath();
+        //     context.fill()
+        // }
+        /* 椭圆函数 */
+        function EllipseTwo(context, x, y, a, b, color, line, lineColor) {
+            //x=x坐标 y=y坐标 a=长轴 b=短轴,color=填充颜色 line线条宽度 lineColor线条颜色
+            context.save();
+            var r = (a > b) ? a : b;
+            var ratioX = a / r;
+            var ratioY = b / r;
+            context.scale(ratioX, ratioY);
+            context.beginPath();
+            context.stroke();
+            context.arc(x / ratioX, y / ratioY, r, 0, 2 * Math.PI, false);
+            context.fillStyle = color
+            context.lineWidth = line;
+            context.strokeStyle = lineColor;
+            context.stroke();
+            context.fill();
+            context.closePath();
+            context.restore();
+        }
+        /* 覆盖一些底部的圆 */
+        function coverCircle(context, x, y, r, beginDeg, closeDeg, direction, circleColor) {
+            //x=x坐标 y=y坐标 r=半径 beginDeg = 起始角度 closeDeg终止角度，direction方向 circleColor = 圆颜色
+            context.beginPath()
+            context.arc(x, y, r, PI(beginDeg), PI(closeDeg), direction)
+            context.fillStyle = circleColor
+            context.fill()
+            context.closePath()
+        }
+        //画曲线
+        function circle(x, y, cpx, cpy, endX, endY, w, color) {
+            //x=起始x坐标 y=起始y坐标 
+            /* cpx	贝塞尔控制点的 x 坐标。
+            cpy	贝塞尔控制点的 y 坐标。
+            endX	结束点的 x 坐标。
+            endY	结束点的 y 坐标。
+            w 线条宽度
+            color 线条颜色 */
+            context.beginPath();
+            context.moveTo(x, y);
+            context.quadraticCurveTo(cpx, cpy, endX, endY);
+            context.lineWidth = w
+            context.strokeStyle = color;
+            context.stroke();
+            context.closePath()
+        }
+        // 画直线
+        function lineStraight(context,x,y,endX,endY,w, color){
+            /* 
+            x=起始x坐标 y=起始y坐标 
+            endX	结束点的 x 坐标。
+            endY	结束点的 y 坐标。
+            w 线条宽度
+            color 线条颜色 */
+            context.beginPath();
+            context.moveTo(x,y);
+            context.lineTo(endX,endY);
+            context.lineWidth = w
+            context.strokeStyle = color;
+            context.stroke();
+            context.closePath()
+        }
+        //三次贝塞尔曲线去画胡子
+        function circleThree(x, y, cp1x, cp1y,cp2x,cp2y,endX, endY, w, color,circleColor) {
+            //x=起始x坐标 y=起始y坐标 
+            /* 
+            cp1x	第一个贝塞尔控制点的 x 坐标。
+            cp1y	第一个贝塞尔控制点的 y 坐标。
+            cp2x	第二个贝塞尔控制点的 x 坐标。
+            cp2y	第二个贝塞尔控制点的 y 坐标。
+            endX	结束点的 x 坐标。
+            endY	结束点的 y 坐标。
+            w 线条宽度
+            color 线条颜色 */
+            context.beginPath();
+            context.moveTo(x, y);
+            context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,endX,endY);
+            context.lineWidth = w
+            context.fillStyle = circleColor
+            context.fill()
+            context.strokeStyle = color;
+            context.stroke();
+            context.closePath()
+        }
+        //画起始点终点圆的函数
+        function perfectCircle(x,y,r,startP,endP,direct,w,circleColor){
+            /* x y 圆心xy坐标  r半径  startP起始点角度 endP终点角度，
+            direct方向 true逆时针
+            circleColor填充颜色 */
+            context.beginPath()
+            context.arc(x, y, r, PI(startP), PI(endP), direct);
+            context.lineWidth = w;
+            context.strokeStyle = 'black';
+            context.fillStyle = circleColor
+            context.fill()
+            context.stroke();
+            context.closePath()
+        }
+        //画三角，填充嘴部的空隙
+        function triangle(x,y,x1,y1,x2,y2,circleColor){
+            /* x起始点x y起始点y x1,y1第二个点坐标 x2,y2第三个点坐标 */
+            context.beginPath();
+            context.moveTo(x,y)
+            context.lineTo(x1,y1)
+            context.lineTo(x2,y2)
+            context.fillStyle = circleColor
+            context.fill()
+            context.closePath()
+        }
+        //开始画脖子拉
+        
+        function neck1(w,x,y,f1,f2,x1,y1,endx1,endy1,s1,s2,x2,y2, endx2,endy2,lColor,fillColor)
+        /* w线条宽度
+            x，y起始xy坐标
+            f1,f2第一根横线终点
+            x1,y1,endx1,endy1右边圆角
+            s1，s2 第二根横线终点
+            x2,y2,endx2,endy2 左边圆弧圆角
+            fillColor填充颜色
+         */
+        {
+            context.lineWidth = w
+            context.beginPath()
+            context.moveTo(x,y)
+            context.lineTo(f1,f2)
+            context.quadraticCurveTo(x1,y1,endx1,endy1)
+            context.lineTo(s1,s2)
+            context.quadraticCurveTo(x2,y2,endx2,endy2)
+            context.strokeStyle = lColor
+
+            context.stroke()
+            context.fillStyle= fillColor;
+            context.fill(); 
+            context.closePath()
+        }
+        //线条函数
+        function line(x,y,x1,y1,w,lColor){
+            context.beginPath()
+            /* xy起点xy坐标 x1 y1终点xy坐标 */
+            context.moveTo(x,y)
+            context.lineTo(x1,y1)
+            context.lineWidth = w
+            context.strokeStyle = lColor
+            context.stroke()
+            context.closePath()
+        }
+        EllipseTwo(context, 400, 400, 280, 250, '#4191d8', 5, 'black')
+        EllipseTwo(context, 400, 442, 240, 210, '#fff', 5, 'black')
+        /* 头部两个椭圆end */
+        coverCircle(context, 400, 630, 180, 180, 0, true, '#fff') //覆盖底部的圆
+        EllipseTwo(context, 358, 240, 40, 50, '#fff', 5, 'black')
+        EllipseTwo(context, 441, 240, 40, 50, '#fff', 5, 'black')//；两个眼睛
+        circle(386,240,370,216,354,240,6,'#000')
+        circle(412,240,426,216,444,240,6,'#000') //眼睛里面的笑眼
+        EllipseTwo(context, 400, 310, 30, 30, '#c8392b', 5, 'black')
+        EllipseTwo(context, 395, 300, 6, 6, '#fff', 0, 'black')//俩鼻子
+        /* 胡子部分 */
+        lineStraight(context,400,340,400,430,3,'#000')
+        lineStraight(context,400,430,230,450,5,'#000')
+        lineStraight(context,400,430,570,450,5,'#000')
+        circleThree(230,450,160,450,160,360,220,380,5,'black','none')
+        circleThree(570,450,640,450,640,360,580,380,5,'black','none')
+        // 嘴巴
+        perfectCircle(400,395,180,18,162,false,5,'#8c1b11')
+        triangle(400,431,230,452,570,452,'#8c1b11')
+        // 橘色嘴巴
+        circleThree(402,500,320,440,230,570,400,575,5,'black','#d88927')
+        circleThree(398,500,480,440,570,570,400,575,5,'black','#d88927')
+        //脖子
+        neck1(5,
+        230,630,
+        570,630,
+        590,645,570,660,
+        230,660,
+        210,648,230,630,
+        '#000','#c63829')
+        //铃铛
+        perfectCircle(400,670,45,0,360,false,3,'#faf551')
+        neck1(
+            5,
+            361,655,
+            438,655,
+            445,660,438,665,
+            362,665,
+            355,660,362,655,
+            '#000','#faf551'
+        )
+        perfectCircle(400,680,13,0,360,false,3,'#a9a9a9')
+        line(400,693,400,714,3,'#000')
+        // 胡子
+        line(480,345,600,305,3,'#000') //右一
+        line(480,365,600,365,3,'#000') //右二
+        line(480,385,600,425,3,'#000') //右三
+        line(320,345,200,305,3,'#000') //左一
+        line(320,365,200,365,3,'#000') //左二
+        line(320,385,200,425,3,'#000') //左三
+    </script>
+</body>
+
+</html>
