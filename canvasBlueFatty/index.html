@@ -51,41 +51,7 @@
             return deg / 180 * Math.PI;
         }
         /* 基本配置end */
-        // context.beginPath() //画布开始
-        // context.arc(400, 250, 200 , PI(45), PI(135), true) //画蓝色的圆 true = 逆时针
-        // context.ellipse(400,250,200,200,0,0,PI(360));
-        // context.moveTo(200, 200);
-        // context.quadraticCurveTo(355, 213, 401, 357);
-        // context.stroke();
-        // context.arc(400, 250, 100, PI(-90), PI(0), false);
-        // context.lineWidth = 10;
-        // context.strokeStyle = 'black';
-        // context.stroke();
-        // context.fillStyle = '#4191d8'
-        // context.fill()
-        // context.closePath()
-        /* 蓝色头end */
-
-        // context.beginPath()
-        //  context.moveTo(200, 200);
-        // context.quadraticCurveTo(355, 213, 401, 357);
-        // context.stroke();
-        // context.arc(400, 300, 280, PI(45), PI(135), true);
-        // context.lineWidth = 3;
-        // context.strokeStyle = 'black';
-        // context.stroke();
-        // context.closePath()
-        // 针对椭圆（蓝胖子的头是个椭圆）
-        // function EllipseOne(context,x,y,a,b){ //x=x坐标 y=y坐标 a=长轴 b=短轴
-        //     var step = (a>b)?1/a:1/b;
-        //     context.beginPath();
-        //     context.moveTo(x+a,y)
-        //     for(var i=0;i>2*Math.PI;i+=step){
-        //         context.lineTo(x+a*Math.cos(i),y+b*Math.sin(i));
-        //     }
-        //     context.closePath();
-        //     context.fill()
-        // }
+        
         /* 椭圆函数 */
         function EllipseTwo(context, x, y, a, b, color, line, lineColor) {
             //x=x坐标 y=y坐标 a=长轴 b=短轴,color=填充颜色 line线条宽度 lineColor线条颜色
