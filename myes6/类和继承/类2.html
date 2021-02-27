@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      /*  Person.prototype.showName = function() {
+        return `name is :${this.name}`;
+      };
+      Person.prototype.showAge = function() {
+        return `age is :${this.age}`;
+      }; */
+      // 下面的写法是一样的
+      Object.assign(Person.prototype, {
+        showName() {
+          return `name is :${this.name}`;
+        },
+        showAge() {
+          return `age is :${this.age}`;
+        }
+      });
+      let p1 = new Person("joyce", 18);
+      console.log(p1.showName());
+      console.log(p1.showAge());
+    </script>
+  </head>
+  <body></body>
+</html>

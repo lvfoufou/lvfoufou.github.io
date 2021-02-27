@@ -1,0 +1,18 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import mod, { show, sum, a, b } from "./modules/4.js";
+      let p1 = new mod.Person("joyce");
+      console.log(p1.showName());
+      show();
+      sum();
+      console.log(a, b);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+      let symbol = Symbol('lvjing')
+      let json={
+        a:'apple',
+        b:'banana',
+        [symbol]:'aaa'
+      }
+      for(let item in json){ //这里的item就相当于key
+        console.log(item)
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
+ 

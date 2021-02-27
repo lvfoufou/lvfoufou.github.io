@@ -1,0 +1,35 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+      let aaa = "suibian";
+      class Person {
+        constructor(name, age) {
+          //构造方法（函数），调用new，自动执行
+          // console.log(`构造函数执行了,${name},${age}`);
+          this.name = name;
+          this.age = age;
+        }
+        showName() {
+          return `名字是：${this.name}`;
+        }
+        showAge() {
+          return `年纪是：${this.age}`;
+        }
+        [aaa]() {
+          return "随便了。。。。。。";
+        }
+      }
+
+      let p1 = new Person("joyce", 18);
+      console.log(p1.suibian);
+      console.log(p1.suibian,'....suibian')
+      console.log(p1[aaa]());
+    </script>
+  </head>
+  <body></body>
+</html>

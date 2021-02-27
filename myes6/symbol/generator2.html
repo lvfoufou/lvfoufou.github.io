@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+   
+  </head>
+  <body>
+    <script>
+      function * gen(){
+        yield 'welcome';
+        yield 'to';
+        return 'mmr';
+      }
+      let g1 = gen();
+      console.log(g1.next());//generator2.html:18 {value: "welcome", done: false}这里的done false的意思是后面还有东西没有执行完
+      console.log(g1.next())//generator2.html:19 {value: "to", done: false}
+      console.log(g1.next())//{value: "mmr", done: true}
+    </script>
+  </body>
+</html>
+ 

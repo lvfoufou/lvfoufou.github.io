@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+   
+  </head>
+  <body>
+    <script>
+      function * gen(){
+        yield 'welcome';
+        yield 'to';
+        return 'mmr';
+      }
+      let g1 = gen();
+     for(let val of g1){
+      console.log(val)
+      /* 
+      welcome
+      to */ 
+      //return的东西，它不会遍历
+     }
+    </script>
+  </body>
+</html>
+ 

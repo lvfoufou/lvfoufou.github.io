@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+      //父类
+      class Person {
+        constructor(name) {
+          this.name = name;
+        }
+        showName() {
+          console.log("父类里面的showName");
+          return `名字为:${this.name}`;
+        }
+      }
+      //子类
+      class Student extends Person {
+        constructor(name, skill) {
+          super(name);
+          this.skill = skill;
+        }
+        showName() {
+          super.showName(); //父类的方法执行
+          // TO DO 做子类的事情
+          console.log("子类里面的showName()");
+        }
+        showSkill() {
+          return `技能是：${this.skill}`;
+        }
+      }
+      // 调用
+      let stu1 = new Student("lvj1i1ng", "happy");
+      stu1.showName();
+    </script>
+  </head>
+  <body></body>
+</html>

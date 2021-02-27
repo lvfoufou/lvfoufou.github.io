@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let setArr= new Set()
+        setArr.add('a')
+        setArr.add('b')
+        setArr.add('c')
+        console.log(setArr,'delete前')
+        setArr.delete('b')
+        console.log(setArr,'delete后') 
+        console.log(setArr.has('b'),"setArr.has('b')")
+        console.log(setArr.size,"setArr.size")
+
+    </script>
+</body>
+</html>

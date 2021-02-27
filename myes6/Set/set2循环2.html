@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let setArr = new Set(["a", "b", "c", "d"]);
+      for (let item of setArr.keys()) {
+        console.log(item);
+        /* a
+b
+c
+d */
+      }
+      console.log('.......................')
+      for (let item of setArr.values()) {
+        console.log(item);
+        /* a
+b
+c
+d */
+      }
+      console.log('.......................')
+      for (let item of setArr.entries()) {
+        console.log(item);
+        /*  ["a", "a"]
+        ["b", "b"] 
+        ["c", "c"]
+        ["d", "d"]*/
+      }
+      console.log('.......................')
+      for (let [k,v] of setArr.entries()) {
+        console.log(k,v);
+        /*  ["a", "a"]
+        ["b", "b"] 
+        ["c", "c"]
+        ["d", "d"]*/
+      }
+    </script>
+  </body>
+</html>

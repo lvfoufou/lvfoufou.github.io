@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async  function fn(){
+            await Promise.reject('.出现问题了')
+            let a = await Promise.resolve('success')
+            console.log(a)
+        }
+        fn().then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+    </script>
+</body>
+</html>
