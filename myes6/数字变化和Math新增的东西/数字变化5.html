@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = 2**53
+        let b = -(2**53-1)
+        console.log(Number.isSafeInteger(a)); //false
+        console.log(Number.isSafeInteger(a-1)); //true
+        console.log(Number.isSafeInteger(b)); //true
+        console.log(Number.isSafeInteger(b-1)); //false
+
+    </script>
+</body>
+</html>
