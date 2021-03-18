@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>prototyle-es5Inherit</title>
+</head>
+<body>
+  <script>
+      function Parent(){
+        this.familyName = 'James'
+      }
+      Parent.prototype.skill=function(){
+        console.log('to play basketball');
+      }
+      function Child(){
+        this.name = 'Lebron'
+        //把父类构造函数当做普通方法执行，改变this指向
+        Parent.call(this) //相当于Child.familyName = 'James'
+      }
+      //Object.create方法第一个参数会把创建空对象的__proto__指向传入的对象
+      // 相当于Child.prototype.__proto__ = Parent.prototype，
+      // 但是Child.prototype.__proto__这种直接操作__proto___的方式ie浏览器并不支持
+      Child.prototype = Object.create(Parent.prototype)
+      Child.prototype.rap=function(){
+        console.log('gigigigigi')
+      }
+      let c =new Child
+      console.log(c.name,c.familyName,c.rap);
+      // c.skill()
+      c.rap()
+      //  打印结果 Lebron James ƒ (){
+      //   console.log('gigigigigi')
+      // }
+      // gigigigigi
+  </script>
+</body>
+</html>
