@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function everyNumber(b) {
+      let newArr = Array.from(new Set(b))
+      for (let i = 0; i < newArr.length - 1; i++) {
+        for (let j = 0; j < newArr.length - i - 1; j++) {
+          if (newArr[j] > newArr[j + 1]) {
+            let a = newArr[j]
+            newArr[j] = newArr[j + 1]
+            newArr[j + 1] = a
+          }
+        }
+      }
+      return newArr
+    }
+    everyNumber([3, 2, 2, 1, 11, 10, 20, 40, 32, 67, 40, 20, 89, 300, 400, 15])
+  </script>
+</body>
+
+</html>
